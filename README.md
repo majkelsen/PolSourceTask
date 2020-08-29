@@ -2,9 +2,9 @@ Project START
 
 TODO:
 
--create 3-column table on static data
--checkbox editting, 
--hiding delete button, deleting data
+V create 3-column table on static data
+V checkbox editting, 
+V hiding delete button, deleting data
 -sorting mechanism on title click
 -table paging, with 3options
 
@@ -13,6 +13,7 @@ TODO:
 
 -change static data to browser local storage
 
+V css styling like on photo
 -css RWD 
 
 -README.md file with description:

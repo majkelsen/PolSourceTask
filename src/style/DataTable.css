@@ -1,0 +1,106 @@
+:root {
+  --row-height: 20px;
+  --checkbox-size: 14px;
+}
+
+.dataTable{
+  margin: 50px auto;
+  padding: 30px;
+  width: 800px;
+  min-height: 300px;
+  background-color: #EEEEEE;
+
+}
+
+.tableRow {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  line-height: var(--row-height);
+  background-color: #fff;
+  padding: 15px;
+  border-left: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  border-bottom: 1px solid #E2E2E2;
+}
+
+.tableRow.first{
+  background-color: rgb(73, 68, 48);
+  color: white;
+  padding: 10px;
+}
+
+.tableRow div:nth-child(1){
+  flex-basis: 60%;
+}
+
+.tableRow div:nth-child(2){
+  flex-basis: 20%;
+}
+
+.tableRow div:nth-child(3){
+  flex-basis: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* checkbox styling */
+.doneCheckbox {
+  appearance: none;
+  display: inline-block;
+  position: relative;
+  border: 2px solid #E2E2E2;
+  background-color: #fafafa;
+  border-radius: 2px;
+
+  margin: calc(((var(--row-height)) - (var(--checkbox-size))) / 2) 3px;
+
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+}
+
+.doneCheckbox:checked{
+  background-color: #F69A2F;
+  border-radius: 3px;
+  border: 1px solid white;
+}
+
+.doneCheckbox:checked:after{
+  content: '\2714';
+  font-size: calc(var(--checkbox-size) - 2px);
+  position: absolute;
+  top: -2.5px;
+  left: 1.5px;
+  color: white;
+}
+
+
+/* del button styling */
+.deleteButton {
+width: 50px;
+height: var(--row-height);
+background-color: #F69A2F;
+border-radius: 1px;
+border: 1px solid black;
+/* border: none; */
+display: none;
+}
+
+.tableRow:hover .deleteButton.hovered{
+  display: block;
+}
+
+.deleteButton:hover{
+  background-color: #d18227;
+  box-shadow: 0 0 3px 1px black;
+}
+
+
+
+
+
+
+
+
+
