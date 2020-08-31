@@ -11,21 +11,25 @@ class DataTable extends Component {
       {
         id: 0,
         text: 'task 1',
-        important: 'low',
+        important: 1,
         done: true,
       },
-      { id: 1, text: "task 2", important: 'medium', done: false },
-      { id: 2, text: "task 3", important: 'high', done: false },
-      { id: 3, text: "task 4", important: 'low', done: true },
-      { id: 4, text: "task 5", important: 'high', done: true },
-      { id: 5, text: "task 6", important: 'high', done: false },
-      { id: 6, text: "task 7", important: 'low', done: true },
-      { id: 7, text: "task 8", important: 'medium', done: false },
-      { id: 8, text: "task 9", important: 'high', done: true },
-      { id: 9, text: "task 10", important: 'high', done: false },
-      { id: 10, text: "task 11", important: 'low', done: true },
-      { id: 11, text: "task 12", important: 'medium', done: false },
+      { id: 1, text: "task 2", important: 2, done: false },
+      { id: 2, text: "task 3", important: 3, done: false },
+      { id: 3, text: "task 4", important: 2, done: true },
+      { id: 4, text: "task 5", important: 1, done: true },
+      { id: 5, text: "task 6", important: 3, done: false },
+      { id: 6, text: "task 7", important: 2, done: true },
+      { id: 7, text: "task 8", important: 3, done: false },
+      { id: 8, text: "task 9", important: 2, done: true },
+      { id: 9, text: "task 10", important: 1, done: false },
+      { id: 10, text: "task 11", important: 2, done: true },
+      { id: 11, text: "task 12", important: 1, done: false },
     ],
+
+    sortBy: '',
+    sortDirection: 1,
+
     rowsPerPage: 10,
     rowsFrom: 1,
     rowsTo: 10,
@@ -133,18 +137,68 @@ class DataTable extends Component {
     })
   }
 
+  tableSort = (e) => {
+    let sortType = e.target.id
+    let { sortDirection, sortBy } = this.state
+
+    if (sortType === sortBy)
+      if (sortDirection === 1)
+        sortDirection = -1
+      else {
+        sortDirection = 1
+      }
+    else {
+      sortDirection = -1
+    }
+
+    this.setState({
+      sortBy: sortType,
+      sortDirection: sortDirection,
+    })
+
+  }
+
   render() {
+    let { sortDirection, sortBy } = this.state
 
     let taskList = this.state.tasks;
+    // console.log(this.state.sortDouble)
+
+    taskList = taskList.sort((a, b) => {
+      if (sortBy === "byText") {
+        a = a.text.toLowerCase();
+        b = b.text.toLowerCase();
+      } else if (sortBy === "byImportant") {
+        a = a.important;
+        b = b.important;
+      } else if (sortBy === "byDone") {
+        a = a.done;
+        b = b.done;
+      }
+
+
+      if (sortDirection === 1) {
+        if (a < b) return 1;
+        if (a > b) return -1;
+        return 0
+      } else {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0
+      }
+
+    })
+
     taskList = taskList.map(task => <Task key={task.id} task={task} delete={this.deleteTask} done={this.changeTaskStatus} />)
     taskList = taskList.slice(this.state.rowsFrom - 1, this.state.rowsTo)
 
+
     return (
-      <div className='dataTable'>
+      <div className='dataTable' >
         <section className="tableRow first">
-          <div className="columnFirst">Task name</div>
-          <div className="columnSecond">Priority</div>
-          <div className="columnThird">Done</div>
+          <div className="columnFirst" onClick={this.tableSort} id="byText">Task name</div>
+          <div className="columnSecond" onClick={this.tableSort} id="byImportant">Priority</div>
+          <div className="columnThird" onClick={this.tableSort} id="byDone">Done</div>
         </section>
         {taskList}
         <TablePager state={this.state} sizeSwitcher={this.sizeSwitcher} pageBack={this.pageBack} pageNext={this.pageNext} />

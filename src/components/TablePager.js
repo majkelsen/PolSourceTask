@@ -35,7 +35,6 @@ class TablePager extends Component {
 
         <p className="pageNumbers"> {rowsFrom} - {rowsTo} of {tasks.length} </p>
 
-        {/* buttons do not sending proper event to function*/}
         <button className="pagingButton left" onClick={pageBack} id="minus"><i className="fas fa-chevron-left"></i></button>
         <button className="pagingButton right" onClick={pageNext} id="add"><i className="fas fa-chevron-right"></i></button>
 

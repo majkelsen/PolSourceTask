@@ -9,7 +9,7 @@
   width: 800px;
   min-height: 662px;
   background-color: #EEEEEE;
-font-size: 13px;
+  font-size: 13px;
 }
 
 .tableRow {
@@ -29,6 +29,13 @@ font-size: 13px;
   color: white;
   padding: 10px;
 }
+
+.tableRow.first div:hover{
+  cursor: pointer;
+
+
+}
+
 
 .tableRow div:nth-child(1){
   flex-basis: 60%;
