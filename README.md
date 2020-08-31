@@ -6,7 +6,7 @@ V create 3-column table on static data
 V checkbox editting, 
 V hiding delete button, deleting data
 -sorting mechanism on title click
--table paging, with 3options
+V table paging, with 3options
 
 -create adding component
 -validate new data on form

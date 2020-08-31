@@ -1,0 +1,24 @@
+.tableRow.last {
+  font-size: 13px;
+}
+
+.tableRow.last .columnFirst{
+  text-align: right;
+  padding-right: 10px;
+}
+
+.tableSize {
+  padding-right: 20px;
+  border: none;
+}
+
+.pageNumbers{
+  padding: 0 10px;
+  width: 120px;
+}
+
+.pagingButton{
+  border: none;
+  width: 30px;
+  background-color: white;
+}
