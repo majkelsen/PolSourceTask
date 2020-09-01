@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import '../style/DataTable.css';
+import AddForm from './AddForm.js'
 import Task from './Task.js';
 import TablePager from './TablePager';
 
-// const DataTable = (props) => {
 class DataTable extends Component {
   state = {
-    couter: 5,
     tasks: [
       {
         id: 0,
@@ -22,7 +21,7 @@ class DataTable extends Component {
       { id: 6, text: "task 7", important: 2, done: true },
       { id: 7, text: "task 8", important: 3, done: false },
       { id: 8, text: "task 9", important: 2, done: true },
-      { id: 9, text: "task 10", important: 1, done: false },
+      { id: 6666, text: "task 10", important: 1, done: false },
       { id: 10, text: "task 11", important: 2, done: true },
       { id: 11, text: "task 12", important: 1, done: false },
     ],
@@ -35,9 +34,17 @@ class DataTable extends Component {
     rowsTo: 10,
   }
 
+  addTask = (newTask) => {
+    this.setState(prevState => ({
+      tasks: [...prevState.tasks, newTask]
+    }))
+    console.log('potwierdzonko dodania taska')
+    // console.log(this.state.tasks)
+    return true
+  }
+
   deleteTask = (id) => {
     // console.log("delete elementu o id " + id);
-
     let tasks = [...this.state.tasks];
     tasks = tasks.filter(task => task.id !== id)
     this.setState({
@@ -47,7 +54,6 @@ class DataTable extends Component {
 
   changeTaskStatus = (id) => {
     // console.log("change w stanie elementu o id " + id);
-
     let tasks = Array.from(this.state.tasks);
     tasks.forEach(task => {
       if (task.id === id) {
@@ -194,15 +200,19 @@ class DataTable extends Component {
 
 
     return (
-      <div className='dataTable' >
-        <section className="tableRow first">
-          <div className="columnFirst" onClick={this.tableSort} id="byText">Task name</div>
-          <div className="columnSecond" onClick={this.tableSort} id="byImportant">Priority</div>
-          <div className="columnThird" onClick={this.tableSort} id="byDone">Done</div>
-        </section>
-        {taskList}
-        <TablePager state={this.state} sizeSwitcher={this.sizeSwitcher} pageBack={this.pageBack} pageNext={this.pageNext} />
-      </div>
+      <>
+        <AddForm tasks={this.state.tasks} add={this.addTask} />
+
+        <div className='dataTable' >
+          <section className="tableRow first">
+            <div className="columnFirst" onClick={this.tableSort} id="byText">Task name</div>
+            <div className="columnSecond" onClick={this.tableSort} id="byImportant">Priority</div>
+            <div className="columnThird" onClick={this.tableSort} id="byDone">Done</div>
+          </section>
+          {taskList}
+          <TablePager state={this.state} sizeSwitcher={this.sizeSwitcher} pageBack={this.pageBack} pageNext={this.pageNext} />
+        </div>
+      </>
     )
   }
 }

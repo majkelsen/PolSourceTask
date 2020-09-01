@@ -8,8 +8,8 @@ V hiding delete button, deleting data
 V sorting mechanism on title click
 V table paging, with 3options
 
--create adding component
--validate new data on form
+V create adding component
+V validate new data on form
 
 -change static data to browser local storage
 
