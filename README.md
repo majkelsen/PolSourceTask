@@ -11,7 +11,7 @@ V table paging, with 3options
 V create adding component
 V validate new data on form
 
--change static data to browser local storage
+V change static data to browser local storage
 
 V css styling like on photo
 -css RWD 

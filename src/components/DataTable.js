@@ -6,25 +6,7 @@ import TablePager from './TablePager';
 
 class DataTable extends Component {
   state = {
-    tasks: [
-      {
-        id: 0,
-        text: 'task 1',
-        important: 1,
-        done: true,
-      },
-      { id: 1, text: "task 2", important: 2, done: false },
-      { id: 2, text: "task 3", important: 3, done: false },
-      { id: 3, text: "task 4", important: 2, done: true },
-      { id: 4, text: "task 5", important: 1, done: true },
-      { id: 5, text: "task 6", important: 3, done: false },
-      { id: 6, text: "task 7", important: 2, done: true },
-      { id: 7, text: "task 8", important: 3, done: false },
-      { id: 8, text: "task 9", important: 2, done: true },
-      { id: 6666, text: "task 10", important: 1, done: false },
-      { id: 10, text: "task 11", important: 2, done: true },
-      { id: 11, text: "task 12", important: 1, done: false },
-    ],
+    tasks: [],
 
     sortBy: '',
     sortDirection: 1,
@@ -34,12 +16,64 @@ class DataTable extends Component {
     rowsTo: 10,
   }
 
+  componentDidMount() {
+    //check if it is 1st visit
+    if (!localStorage.getItem('firstVisitLocal')) {
+      console.log('WELCOME 1ST TIME ON SITE')
+      //set local flag to visited
+      localStorage.setItem('firstVisitLocal', true);
+
+      //create template array
+      const templateTasks = [
+        {
+          id: 0,
+          text: 'task 1',
+          important: 1,
+          done: true,
+        },
+        { id: 1, text: "task 2", important: 2, done: false },
+        { id: 2, text: "task 3", important: 3, done: false },
+        { id: 3, text: "task 4", important: 2, done: true },
+        { id: 4, text: "task 5", important: 1, done: true },
+        { id: 5, text: "task 6", important: 3, done: false },
+        { id: 6, text: "task 7", important: 2, done: true },
+        { id: 7, text: "task 8", important: 3, done: false },
+        { id: 8, text: "task 9", important: 2, done: true },
+        { id: 9, text: "task 10", important: 1, done: false },
+        { id: 10, text: "task 11", important: 2, done: true },
+        { id: 11, text: "task 12", important: 1, done: false },
+      ];
+
+      //assign template array to state
+      localStorage.setItem('tasksLocalSave', JSON.stringify(templateTasks));
+    }
+
+    //on site mount, save tasks from local stored data to state
+    if (localStorage.getItem('tasksLocalSave')) {
+      let tasksLocalSave = localStorage.getItem('tasksLocalSave')
+      tasksLocalSave = JSON.parse(tasksLocalSave)
+      this.setState({
+        tasks: tasksLocalSave
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    //get actual task list
+    let newTasksList = this.state.tasks
+    let tasksLocalSave = localStorage.getItem('tasksLocalSave')
+    tasksLocalSave = JSON.parse(tasksLocalSave)
+
+    //assign actual task list to saved local
+    if (newTasksList !== tasksLocalSave) {
+      localStorage.setItem('tasksLocalSave', JSON.stringify(newTasksList))
+    }
+  }
+
   addTask = (newTask) => {
     this.setState(prevState => ({
       tasks: [...prevState.tasks, newTask]
     }))
-    console.log('potwierdzonko dodania taska')
-    // console.log(this.state.tasks)
     return true
   }
 
@@ -47,6 +81,11 @@ class DataTable extends Component {
     // console.log("delete elementu o id " + id);
     let tasks = [...this.state.tasks];
     tasks = tasks.filter(task => task.id !== id)
+
+    if (this.state.rowsFrom === this.state.tasks.length) {
+      this.pageBack()
+    }
+
     this.setState({
       tasks
     })
