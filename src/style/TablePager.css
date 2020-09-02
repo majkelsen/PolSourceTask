@@ -38,14 +38,23 @@ padding-right: 8px;
   .tableRow.last{
     flex-direction: row;
     justify-content: space-between;
+    font-size: 15px;
   }
 
   .pagerLeft, .pagerRight{
     flex-direction: column;
+    padding: 10px;
+  }
+
+  .tableSize{
+    margin: 10px;
   }
 
   .switchPageButtons{
     justify-content: flex-end;
+  }
+  .pagingButton{
+    font-size: 22px;
   }
 
   .pageNumbers{

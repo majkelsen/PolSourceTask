@@ -260,6 +260,7 @@ class DataTable extends Component {
         <AddForm tasks={this.state.tasks} add={this.addTask} />
 
         <div className='dataTable' >
+          <section className="tableRow first mobile">Sort by:</section>
           <section className="tableRow first">
             <div className="columnFirst" onClick={this.tableSort} id="byText">Task name</div>
             <div className="columnSecond" onClick={this.tableSort} id="byImportant">Priority</div>
