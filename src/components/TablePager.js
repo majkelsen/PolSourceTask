@@ -23,21 +23,24 @@ class TablePager extends Component {
 
 
       <section className="tableRow last">
-        <div className="columnFirst">Rows per page:</div>
+        <section className="pagerLeft">
+          <p className="sizingTitle">Rows per page:</p>
 
-        <select className="tableSize" name="tableSize" value={rowsPerPage} onChange={sizeSwitcher} >
-          {this.state.size.map((item) =>
-            <option key={item.id} value={item.value}>{item.value}</option>
-          )}
-        </select>
+          <select className="tableSize" name="tableSize" value={rowsPerPage} onChange={sizeSwitcher} >
+            {this.state.size.map((item) =>
+              <option key={item.id} value={item.value}>{item.value}</option>
+            )}
+          </select>
+        </section>
 
+        <section className="pagerRight">
+          <p className="pageNumbers"> {rowsFrom} - {rowsTo} of {tasks.length} </p>
 
-
-        <p className="pageNumbers"> {rowsFrom} - {rowsTo} of {tasks.length} </p>
-
-        <button className="pagingButton left" onClick={pageBack} id="minus"><i className="fas fa-chevron-left"></i></button>
-        <button className="pagingButton right" onClick={pageNext} id="add"><i className="fas fa-chevron-right"></i></button>
-
+          <div className="switchPageButtons">
+            <button className="pagingButton left" onClick={pageBack} id="minus"><i className="fas fa-chevron-left"></i></button>
+            <button className="pagingButton right" onClick={pageNext} id="add"><i className="fas fa-chevron-right"></i></button>
+          </div>
+        </section>
       </section>
 
     )

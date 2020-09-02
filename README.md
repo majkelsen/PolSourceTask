@@ -14,7 +14,7 @@ V validate new data on form
 V change static data to browser local storage
 
 V css styling like on photo
--css RWD 
+V css RWD 
 
 -README.md file with description:
 a.	What is required for running the project

@@ -1,5 +1,7 @@
 .tableRow.last {
   font-size: 13px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .tableRow.last .columnFirst{
@@ -7,9 +9,18 @@
   padding-right: 10px;
 }
 
+.pagerLeft, .pagerRight, .switchPageButtons {
+  display: flex;
+}
+
+.sizingTitle{
+padding-right: 8px;
+}
+
 .tableSize {
   padding-right: 20px;
   border: none;
+  box-shadow: 0 0 0.6px 0 black;
 }
 
 .pageNumbers{
@@ -21,4 +32,24 @@
   border: none;
   width: 30px;
   background-color: white;
+}
+
+@media (max-width: 520px) {
+  .tableRow.last{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .pagerLeft, .pagerRight{
+    flex-direction: column;
+  }
+
+  .switchPageButtons{
+    justify-content: flex-end;
+  }
+
+  .pageNumbers{
+    padding: 0 10px;
+    width: auto;
+  }
 }

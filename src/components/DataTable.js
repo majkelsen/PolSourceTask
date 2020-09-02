@@ -71,8 +71,19 @@ class DataTable extends Component {
   }
 
   addTask = (newTask) => {
+    let checkRowsOnDelete = this.state.rowsTo
+    if (this.state.rowsTo === this.state.tasks.length) {
+      checkRowsOnDelete++
+    }
+    console.log('rowsto' + this.state.rowsTo)
+    console.log(this.state.rowsFrom + this.state.rowsPerPage)
+    if ((this.state.rowsTo + 1) > (this.state.rowsFrom + this.state.rowsPerPage - 1)) {
+      checkRowsOnDelete = this.state.rowsFrom + this.state.rowsPerPage - 1
+    }
+
     this.setState(prevState => ({
-      tasks: [...prevState.tasks, newTask]
+      tasks: [...prevState.tasks, newTask],
+      rowsTo: checkRowsOnDelete,
     }))
     return true
   }
@@ -86,8 +97,14 @@ class DataTable extends Component {
       this.pageBack()
     }
 
+    let checkRowsOnDelete = this.state.rowsTo
+    if (this.state.rowsTo > this.state.tasks.length) {
+      checkRowsOnDelete = this.state.tasks.length
+    }
+
     this.setState({
-      tasks
+      tasks,
+      rowsTo: checkRowsOnDelete
     })
   }
 

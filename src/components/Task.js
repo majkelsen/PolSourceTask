@@ -11,12 +11,26 @@ const Task = (props) => {
 
   return (
     <section className="tableRow">
-      <div className="columnFirst">{text}</div>
-      <div className="columnSecond">{priority}</div>
-      <div className="columnThird">
+      <div className="columnFirst desktop">{text}</div>
+      <div className="columnSecond desktop">{priority}</div>
+      <div className="columnThird desktop">
         <input className="doneCheckbox" id="doneCheckbox" type="checkbox" checked={done} onChange={() => props.done(id)} />
         <button className="deleteButton hovered" onClick={() => props.delete(id)}>X</button>
       </div>
+
+      <div className="columnFirst mobile">
+        <p>Task name:</p>
+        <p className="taskData">{text}</p>
+      </div>
+      <div className="columnSecond mobile">
+        <p>Priority:</p>
+        <p className="taskData">{priority}</p>
+      </div>
+      <div className="columnThird mobile">
+        <label htmlFor="doneCheckbox">Done: </label>
+        <input className="doneCheckbox" id="doneCheckbox" type="checkbox" checked={done} onChange={() => props.done(id)} />
+      </div>
+      <button className="deleteButton mobile" onClick={() => props.delete(id)}>X</button>
     </section>
   )
 }

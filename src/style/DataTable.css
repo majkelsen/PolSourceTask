@@ -90,7 +90,6 @@ height: var(--row-height);
 background-color: #F69A2F;
 border-radius: 1px;
 border: 1px solid black;
-/* border: none; */
 display: none;
 }
 
@@ -103,9 +102,73 @@ display: none;
   box-shadow: 0 0 3px 1px black;
 }
 
+.mobile {
+  display: none;
+}
 
+@media (max-width: 820px) {
+  .dataTable{
+    width: 700px;
+  }
+  .tableRow {
+    width: 100%;}
+}
 
+@media (max-width: 720px) {
+  .dataTable{
+    width: 600px;
+  }
 
+}
+
+@media (max-width: 620px) {
+  .dataTable{
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  
+
+  .tableRow.first{
+    display: none;
+  }
+
+  .tableRow {
+    flex-direction: column;
+  }
+
+  .tableRow div:nth-child(n).desktop {
+    display: none;
+  }
+  .tableRow div:nth-child(n).mobile {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+
+  .columnFirst.mobile{
+    flex-direction: column;
+  }
+
+  .deleteButton{
+    width: 15%;
+    margin: 0 auto;
+    display: block;
+  }
+  .mobile .taskData{
+    font-size: 15px;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  :root {
+    --checkbox-size: 17px;
+  }
+}
 
 
 
