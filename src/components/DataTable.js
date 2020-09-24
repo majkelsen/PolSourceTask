@@ -75,8 +75,6 @@ class DataTable extends Component {
     if (this.state.rowsTo === this.state.tasks.length) {
       checkRowsOnDelete++
     }
-    console.log('rowsto' + this.state.rowsTo)
-    console.log(this.state.rowsFrom + this.state.rowsPerPage)
     if ((this.state.rowsTo + 1) > (this.state.rowsFrom + this.state.rowsPerPage - 1)) {
       checkRowsOnDelete = this.state.rowsFrom + this.state.rowsPerPage - 1
     }

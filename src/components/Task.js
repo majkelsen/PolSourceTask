@@ -11,6 +11,8 @@ const Task = (props) => {
 
   return (
     <section className="tableRow">
+
+      {/* desktop version of row */}
       <div className="columnFirst desktop">{text}</div>
       <div className="columnSecond desktop">{priority}</div>
       <div className="columnThird desktop">
@@ -18,6 +20,7 @@ const Task = (props) => {
         <button className="deleteButton hovered" onClick={() => props.delete(id)}>X</button>
       </div>
 
+      {/* mobile version of row */}
       <div className="columnFirst mobile">
         <p>Task name:</p>
         <p className="taskData">{text}</p>
@@ -31,6 +34,8 @@ const Task = (props) => {
         <input className="doneCheckbox" id="doneCheckbox" type="checkbox" checked={done} onChange={() => props.done(id)} />
       </div>
       <button className="deleteButton mobile" onClick={() => props.delete(id)}>X</button>
+
+
     </section>
   )
 }
